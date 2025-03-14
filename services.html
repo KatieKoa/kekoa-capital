@@ -9,20 +9,29 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
         }
         body {
             line-height: 1.6;
-            color: #fff;
-            background-color: #000000;
+            color: #333333;
+            background-color: #ffffff;
+            font-family: 'Open Sans', sans-serif;
         }
         .nav {
             position: sticky;
             top: 0;
-            background: #31125d;
+            background: #5a4b8c;
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+        }
+        .nav input[type="checkbox"] {
+            display: none;
+        }
+        .nav .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
         }
         .nav ul {
             list-style: none;
@@ -36,90 +45,191 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            display: block;
         }
         .nav ul li a:hover {
-            color: #ff4d4d;
+            color: #000000;
+            font-family: 'Lora', serif;
+            font-style: italic;
         }
-        .content {
+        .header {
             padding: 4rem 2rem;
-            background: #111111;
+            background: #f5f5f5;
             text-align: center;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        .content h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            font-weight: 800;
+        .header h2 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 3.45rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            color: #000000;
             text-transform: uppercase;
         }
-        .service-grid {
+        .service-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            position: relative;
         }
-        .service-item {
-            background: #1a1a1a;
-            padding: 2.5rem;
+        .service-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(245, 245, 245, 0.8), rgba(224, 224, 224, 0.6));
+            z-index: 0;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        .service-card {
+            background: #ffffff;
+            padding: 3rem;
             border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            border-left: 5px solid #ff4d4d;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
         }
-        .service-item:hover {
-            transform: translateY(-8px);
+        .service-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 10px 25px rgba(90, 75, 140, 0.3);
         }
-        .service-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #fff;
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(90, 75, 140, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            transition: transform 0.6s ease;
+        }
+        .service-card:hover::after {
+            transform: rotate(45deg);
+        }
+        .service-card h3 {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #000000;
             font-weight: 700;
+            font-style: italic;
         }
-        .service-item p {
-            font-size: 1.1rem;
-            color: #ccc;
+        .service-card p {
+            font-size: 1.2rem;
+            color: #333333;
+            line-height: 1.6;
         }
         footer {
-            background: #31125d;
+            background: #5a4b8c;
             color: white;
             text-align: center;
             padding: 2rem 0;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
         footer p {
             font-size: 1rem;
             margin-bottom: 0.5rem;
+            font-family: 'Tenor Sans', sans-serif;
         }
         footer a {
-            color: #ff4d4d;
+            color: #ffffff;
             text-decoration: underline;
+            font-family: 'Tenor Sans', sans-serif;
+            font-style: normal;
             transition: color 0.3s ease;
         }
         footer a:hover {
-            color: #e43b3b;
+            color: #cccccc;
+            font-family: 'Tenor Sans', sans-serif;
+            font-style: normal;
         }
         @media (max-width: 768px) {
+            .nav .hamburger {
+                display: block;
+            }
             .nav ul {
+                display: none;
                 flex-direction: column;
                 text-align: center;
                 gap: 1rem;
+                background: #5a4b8c;
+                padding: 1rem 0;
             }
-            .content h2 {
-                font-size: 2.2rem;
+            .nav input[type="checkbox"]:checked ~ ul {
+                display: flex;
             }
-            .service-grid {
-                grid-template-columns: 1fr;
+            .header {
+                padding: 2rem 1rem;
+                margin: 1rem auto;
             }
-            .service-item {
+            .header h2 {
+                font-size: 2.5rem;
+            }
+            .service-section {
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+            .service-card {
                 padding: 2rem;
+                min-height: 250px;
+            }
+            .service-card h3 {
+                font-size: 1.6rem;
+            }
+            .service-card p {
+                font-size: 1.1rem;
+            }
+            footer {
+                padding: 1.5rem 0;
+            }
+            footer p {
+                font-size: 0.9rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+            footer a {
+                font-size: 0.9rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+        }
+        @media (max-width: 480px) {
+            .header h2 {
+                font-size: 2.1rem;
+            }
+            .service-card h3 {
+                font-size: 1.4rem;
+            }
+            .service-card p {
+                font-size: 1rem;
+            }
+            footer p {
+                font-size: 0.8rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+            footer a {
+                font-size: 0.8rem;
+                font-family: 'Tenor Sans', sans-serif;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Tenor Sans&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="nav">
+        <input type="checkbox" id="nav-check">
+        <label for="nav-check" class="hamburger">☰</label>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -128,21 +238,22 @@
         </ul>
     </nav>
 
-    <div class="content">
+    <div class="header">
         <h2>Our Services</h2>
-        <div class="service-grid">
-            <div class="service-item">
-                <h3>Investment Planning</h3>
-                <p>Custom strategies to grow your wealth sustainably and achieve long-term financial goals with innovative approaches.</p>
-            </div>
-            <div class="service-item">
-                <h3>Financial Consulting</h3>
-                <p>Expert advice to navigate complex markets and optimize your financial decisions with confidence.</p>
-            </div>
-            <div class="service-item">
-                <h3>Budgeting</h3>
-                <p>Strategic guidance to manage your finances effectively, reduce expenses, and build a solid financial foundation.</p>
-            </div>
+    </div>
+
+    <div class="service-section">
+        <div class="service-card">
+            <h3>Service Placeholder 1</h3>
+            <p>Coming soon—explore innovative financial solutions tailored to your needs.</p>
+        </div>
+        <div class="service-card">
+            <h3>Service Placeholder 2</h3>
+            <p>Coming soon—discover tools to enhance your financial confidence.</p>
+        </div>
+        <div class="service-card">
+            <h3>Service Placeholder 3</h3>
+            <p>Coming soon—unlock personalized strategies for your future.</p>
         </div>
     </div>
 
