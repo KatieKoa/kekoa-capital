@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kekoa Capital - More</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            line-height: 1.6;
+            color: #333333;
+            background-color: #ffffff;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .nav {
+            position: sticky;
+            top: 0;
+            background: #5a4b8c;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .nav input[type="checkbox"] {
+            display: none;
+        }
+        .nav .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            display: block;
+        }
+        .nav ul li a:hover {
+            color: #000000;
+            font-family: 'Lora', serif;
+            font-style: italic;
+        }
+        .header {
+            padding: 3rem 2rem;
+            background: #f5f5f5;
+            text-align: left;
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem; /* Smaller size */
+            font-weight: 500;
+            color: #000000;
+            text-transform: lowercase;
+            font-style: italic; /* Italicized */
+            margin-left: 2rem; /* Off-center to the left */
+        }
+        .card-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+            gap: 2rem;
+        }
+        .card {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0); /* Subtle gradient */
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            min-height: 300px; /* Larger height */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h2 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 2.5rem; /* Larger title */
+            margin-bottom: 1.5rem;
+            color: #000000;
+            text-transform: uppercase;
+        }
+        .card p {
+            font-size: 1.2rem; /* Larger text */
+            color: #333333;
+            line-height: 1.6;
+        }
+        footer {
+            background: #5a4b8c;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Tenor Sans', sans-serif;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+            font-family: 'Tenor Sans', sans-serif;
+            font-style: normal;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #cccccc;
+            font-family: 'Tenor Sans', sans-serif;
+            font-style: normal;
+        }
+        @media (max-width: 768px) {
+            .nav .hamburger {
+                display: block;
+            }
+            .nav ul {
+                display: none;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                background: #5a4b8c;
+                padding: 1rem 0;
+            }
+            .nav input[type="checkbox"]:checked ~ ul {
+                display: flex;
+            }
+            .header {
+                padding: 2rem 1rem;
+                margin: 1rem auto;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+                margin-left: 1rem;
+            }
+            .card-section {
+                padding: 1rem;
+                grid-template-columns: 1fr; /* Stack cards on mobile */
+            }
+            .card {
+                min-height: 250px;
+                padding: 2rem;
+            }
+            .card h2 {
+                font-size: 2rem;
+            }
+            .card p {
+                font-size: 1.1rem;
+            }
+            footer {
+                padding: 1.5rem 0;
+            }
+            footer p {
+                font-size: 0.9rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+            footer a {
+                font-size: 0.9rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+        }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            .card h2 {
+                font-size: 1.8rem;
+            }
+            .card p {
+                font-size: 1rem;
+            }
+            footer p {
+                font-size: 0.8rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+            footer a {
+                font-size: 0.8rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Tenor+Sans&family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <input type="checkbox" id="nav-check">
+        <label for="nav-check" class="hamburger">☰</label>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="more.html">More</a></li>
+        </ul>
+    </nav>
+
+    <div class="header">
+        <h1>more...</h1>
+    </div>
+
+    <div class="card-section">
+        <div class="card">
+            <h2>Placeholder 1</h2>
+            <p>Coming soon...</p>
+        </div>
+        <div class="card">
+            <h2>Placeholder 2</h2>
+            <p>Coming soon...</p>
+        </div>
+        <div class="card">
+            <h2>Placeholder 3</h2>
+            <p>Coming soon...</p>
+        </div>
+        <div class="card">
+            <h2>Common Q&As</h2>
+            <p>Coming soon...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Kekoa Capital | <a href="mailto:katie@kekoa.capital">katie@kekoa.capital</a> | <a href="tel:978-270-7260">978-270-7260</a></p>
+    </footer>
+</body>
+</html>
