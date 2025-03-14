@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kekoa Capital - About</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            line-height: 1.6;
+            color: #333333;
+            background-color: #ffffff;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .nav {
+            position: sticky;
+            top: 0;
+            background: #5a4b8c;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .nav input[type="checkbox"] {
+            display: none;
+        }
+        .nav .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            display: block;
+        }
+        .nav ul li a:hover {
+            color: #000000;
+            font-family: 'Lora', serif;
+            font-style: italic;
+        }
+        .content {
+            padding: 4rem 2rem;
+            background: #f5f5f5;
+            text-align: center;
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .content h2 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 3.45rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            color: #000000;
+            text-transform: uppercase;
+        }
+        .content h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #000000;
+            font-weight: 700;
+            font-style: italic;
+        }
+        .content p {
+            font-size: 1.2rem;
+            color: #333333;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .content ul {
+            text-align: left;
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .content ul li {
+            font-size: 1.2rem;
+            color: #333333;
+        }
+        .content ul li strong {
+            color: #000000;
+        }
+        .katie-section {
+            padding: 4rem 2rem;
+            background: #f5f5f5;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .katie-section h2 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 3.45rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            color: #000000;
+            text-transform: uppercase;
+        }
+        .katie-section .photo-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .katie-section .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        .katie-section p {
+            font-size: 1.2rem;
+            color: #333333;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        footer {
+            background: #5a4b8c;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Tenor Sans', sans-serif;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+            font-family: 'Tenor Sans', sans-serif;
+            font-style: normal;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #cccccc;
+            font-family: 'Tenor Sans', sans-serif;
+            font-style: normal;
+        }
+        @media (max-width: 768px) {
+            .nav .hamburger {
+                display: block;
+            }
+            .nav ul {
+                display: none;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                background: #5a4b8c;
+                padding: 1rem 0;
+            }
+            .nav input[type="checkbox"]:checked ~ ul {
+                display: flex;
+            }
+            .content, .katie-section {
+                padding: 2rem 1rem;
+                margin: 1rem auto;
+            }
+            .content h2, .katie-section h2 {
+                font-size: 2.5rem;
+            }
+            .content h3 {
+                font-size: 1.5rem;
+                margin: 1.5rem 0 0.8rem;
+            }
+            .content p, .content ul li, .katie-section p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+            .content ul {
+                margin-left: 1rem;
+            }
+            .katie-section .photo-container {
+                max-width: 100%;
+            }
+            footer {
+                padding: 1.5rem 0;
+            }
+            footer p {
+                font-size: 0.9rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+            footer a {
+                font-size: 0.9rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+        }
+        @media (max-width: 480px) {
+            .content h2, .katie-section h2 {
+                font-size: 2.1rem;
+            }
+            .content h3 {
+                font-size: 1.3rem;
+            }
+            .content p, .content ul li, .katie-section p {
+                font-size: 1rem;
+            }
+            footer p {
+                font-size: 0.8rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+            footer a {
+                font-size: 0.8rem;
+                font-family: 'Tenor Sans', sans-serif;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Tenor+Sans&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <input type="checkbox" id="nav-check">
+        <label for="nav-check" class="hamburger">☰</label>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="more.html">More</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h2>About Kekoa Capital</h2>
+        <h3>Our Philosophy</h3>
+        <p>At Kekoa Capital, we believe financial confidence comes from clarity, education, and a plan tailored to your unique goals. Whether you're a young professional navigating your first big financial decisions, a small business owner managing cash flow, or someone rebuilding after a life transition, we provide personalized financial planning to help you take control of your future.</p>
+        <h3>Our Approach</h3>
+        <p>We focus on comprehensive financial planning rather than investment management, offering fee-only services that prioritize your goals. Our services include:</p>
+        <ul>
+            <li><strong>Strategic Financial Planning</strong> – Helping you understand your money and make confident decisions.</li>
+            <li><strong>Budgeting & Cash Flow Management</strong> – Creating a strategy to balance today’s needs with tomorrow’s goals.</li>
+            <li><strong>Employee Benefits Review</strong> – Ensuring you maximize workplace benefits for financial security.</li>
+        </ul>
+        <p>We take a holistic approach to financial planning, considering not just the numbers but the bigger picture—your values, priorities, and the life you want to build. Our goal is to provide clarity and confidence in your financial future.</p>
+        <h3>Our Mission</h3>
+        <p>At Kekoa Capital, we empower you to take bold steps toward your financial future—on your terms.</p>
+    </div>
+
+    <div class="katie-section">
+        <h2>About Katie Hanlon</h2>
+        <div class="photo-container">
+            <img src="https://via.placeholder.com/600x400?text=Photo+of+Katie+Hanlon+with+Dog" alt="Katie Hanlon with her dog" loading="lazy">
+        </div>
+        <p>Coming soon...</p>
+    </div>
+
+    <footer>
+        <p>© 2025 Kekoa Capital | <a href="mailto:katie@kekoa.capital">katie@kekoa.capital</a> | <a href="tel:978-270-7260">978-270-7260</a></p>
+    </footer>
+</body>
+</html>
+
