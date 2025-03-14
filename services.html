@@ -11,10 +11,11 @@
             box-sizing: border-box;
         }
         body {
-            line-height: 1.6;
-            color: #333333;
-            background-color: #ffffff;
             font-family: 'Open Sans', sans-serif;
+            background: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         .nav {
             position: sticky;
@@ -23,15 +24,6 @@
             padding: 1rem 2rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-        }
-        .nav input[type="checkbox"] {
-            display: none;
-        }
-        .nav .hamburger {
-            display: none;
-            font-size: 2rem;
-            color: white;
-            cursor: pointer;
         }
         .nav ul {
             list-style: none;
@@ -45,15 +37,48 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
-            display: block;
         }
         .nav ul li a:hover {
             color: #000000;
             font-family: 'Lora', serif;
             font-style: italic;
         }
-        .header {
+        .hero {
+            height: 100vh;
+            position: relative;
+            background: url('https://via.placeholder.com/1920x1080/ffffff/333333?text=Services+Background') no-repeat center center/cover;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-content {
+            text-align: center;
+            color: #000000;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .floating-elements div {
+            position: absolute;
+            background: rgba(90, 75, 140, 0.2);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+        .floating-elements .dot1 { width: 20px; height: 20px; top: 10%; left: 20%; }
+        .floating-elements .dot2 { width: 30px; height: 30px; top: 30%; left: 70%; animation-delay: 1s; }
+        .floating-elements .dot3 { width: 15px; height: 15px; top: 70%; left: 40%; animation-delay: 2s; }
+        .content {
             padding: 4rem 2rem;
             background: #f5f5f5;
             text-align: center;
@@ -62,75 +87,45 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        .header h2 {
+        .content h2 {
             font-family: 'Tenor Sans', sans-serif;
             font-size: 3.45rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             font-weight: 400;
             color: #000000;
             text-transform: uppercase;
+            animation: fadeInDown 1.5s ease-out;
         }
-        .service-section {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            position: relative;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
         }
-        .service-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(245, 245, 245, 0.8), rgba(224, 224, 224, 0.6));
-            z-index: 0;
-            border-radius: 8px;
-            pointer-events: none;
-        }
-        .service-card {
+        .service-item {
             background: #ffffff;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-left: 5px solid #5a4b8c;
+            animation: fadeInUp 2.5s ease-out;
         }
-        .service-card:hover {
-            transform: translateY(-10px) rotate(1deg);
-            box-shadow: 0 10px 25px rgba(90, 75, 140, 0.3);
+        .service-item:hover {
+            transform: translateY(-8px);
         }
-        .service-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(90, 75, 140, 0.1) 0%, transparent 70%);
-            z-index: -1;
-            transition: transform 0.6s ease;
-        }
-        .service-card:hover::after {
-            transform: rotate(45deg);
-        }
-        .service-card h3 {
+        .service-item h3 {
             font-family: 'Lora', serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
             color: #000000;
             font-weight: 700;
             font-style: italic;
+            animation: slideIn 2s ease-out;
         }
-        .service-card p {
-            font-size: 1.2rem;
+        .service-item p {
+            font-size: 1.1rem;
             color: #333333;
-            line-height: 1.6;
         }
         footer {
             background: #5a4b8c;
@@ -141,95 +136,85 @@
         }
         footer p {
             font-size: 1rem;
-            margin-bottom: 0.5rem;
             font-family: 'Tenor Sans', sans-serif;
         }
         footer a {
             color: #ffffff;
             text-decoration: underline;
-            font-family: 'Tenor Sans', sans-serif;
-            font-style: normal;
             transition: color 0.3s ease;
         }
         footer a:hover {
             color: #cccccc;
-            font-family: 'Tenor Sans', sans-serif;
-            font-style: normal;
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         @media (max-width: 768px) {
-            .nav .hamburger {
-                display: block;
-            }
-            .nav ul {
-                display: none;
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-                background: #5a4b8c;
-                padding: 1rem 0;
-            }
-            .nav input[type="checkbox"]:checked ~ ul {
-                display: flex;
-            }
-            .header {
+            .hero h1 { font-size: 3rem; }
+            .floating-elements .dot1, .dot2, .dot3 { display: none; }
+            .content {
                 padding: 2rem 1rem;
                 margin: 1rem auto;
             }
-            .header h2 {
+            .content h2 {
                 font-size: 2.5rem;
             }
-            .service-section {
-                padding: 1rem;
+            .service-grid {
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-            .service-card {
+            .service-item {
                 padding: 2rem;
-                min-height: 250px;
             }
-            .service-card h3 {
-                font-size: 1.6rem;
+            .service-item h3 {
+                font-size: 1.5rem;
             }
-            .service-card p {
-                font-size: 1.1rem;
-            }
-            footer {
-                padding: 1.5rem 0;
-            }
-            footer p {
-                font-size: 0.9rem;
-                font-family: 'Tenor Sans', sans-serif;
-            }
-            footer a {
-                font-size: 0.9rem;
-                font-family: 'Tenor Sans', sans-serif;
-            }
-        }
-        @media (max-width: 480px) {
-            .header h2 {
-                font-size: 2.1rem;
-            }
-            .service-card h3 {
-                font-size: 1.4rem;
-            }
-            .service-card p {
+            .service-item p {
                 font-size: 1rem;
             }
             footer p {
+                font-size: 0.9rem;
+            }
+            footer a {
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.5rem; }
+            .content h2 {
+                font-size: 2.1rem;
+            }
+            .service-item h3 {
+                font-size: 1.3rem;
+            }
+            .service-item p {
+                font-size: 0.9rem;
+            }
+            footer p {
                 font-size: 0.8rem;
-                font-family: 'Tenor Sans', sans-serif;
             }
             footer a {
                 font-size: 0.8rem;
-                font-family: 'Tenor Sans', sans-serif;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Tenor Sans&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Tenor+Sans&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="nav">
-        <input type="checkbox" id="nav-check">
-        <label for="nav-check" class="hamburger">☰</label>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -237,26 +222,33 @@
             <li><a href="more.html">More</a></li>
         </ul>
     </nav>
-
-    <div class="header">
-        <h2>Our Services</h2>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Services</h1>
+        </div>
+        <div class="floating-elements">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+            <div class="dot3"></div>
+        </div>
+    </section>
+    <div class="content">
+        <h2>Explore Our Offerings</h2>
+        <div class="service-grid">
+            <div class="service-item">
+                <h3>Service Placeholder 1</h3>
+                <p>Coming soon—explore innovative financial solutions tailored to your needs.</p>
+            </div>
+            <div class="service-item">
+                <h3>Service Placeholder 2</h3>
+                <p>Coming soon—discover tools to enhance your financial confidence.</p>
+            </div>
+            <div class="service-item">
+                <h3>Service Placeholder 3</h3>
+                <p>Coming soon—unlock personalized strategies for your future.</p>
+            </div>
+        </div>
     </div>
-
-    <div class="service-section">
-        <div class="service-card">
-            <h3>Service Placeholder 1</h3>
-            <p>Coming soon—explore innovative financial solutions tailored to your needs.</p>
-        </div>
-        <div class="service-card">
-            <h3>Service Placeholder 2</h3>
-            <p>Coming soon—discover tools to enhance your financial confidence.</p>
-        </div>
-        <div class="service-card">
-            <h3>Service Placeholder 3</h3>
-            <p>Coming soon—unlock personalized strategies for your future.</p>
-        </div>
-    </div>
-
     <footer>
         <p>© 2025 Kekoa Capital | <a href="mailto:katie@kekoa.capital">katie@kekoa.capital</a> | <a href="tel:978-270-7260">978-270-7260</a></p>
     </footer>
