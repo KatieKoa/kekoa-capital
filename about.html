@@ -11,10 +11,11 @@
             box-sizing: border-box;
         }
         body {
-            line-height: 1.6;
-            color: #333333;
-            background-color: #ffffff;
             font-family: 'Open Sans', sans-serif;
+            background: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         .nav {
             position: sticky;
@@ -23,15 +24,6 @@
             padding: 1rem 2rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-        }
-        .nav input[type="checkbox"] {
-            display: none;
-        }
-        .nav .hamburger {
-            display: none;
-            font-size: 2rem;
-            color: white;
-            cursor: pointer;
         }
         .nav ul {
             list-style: none;
@@ -45,14 +37,47 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
-            display: block;
         }
         .nav ul li a:hover {
             color: #000000;
             font-family: 'Lora', serif;
             font-style: italic;
         }
+        .hero {
+            height: 100vh;
+            position: relative;
+            background: url('https://via.placeholder.com/1920x1080/ffffff/333333?text=About+Background') no-repeat center center/cover;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-content {
+            text-align: center;
+            color: #000000;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .floating-elements div {
+            position: absolute;
+            background: rgba(90, 75, 140, 0.2);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+        .floating-elements .dot1 { width: 20px; height: 20px; top: 10%; left: 20%; }
+        .floating-elements .dot2 { width: 30px; height: 30px; top: 30%; left: 70%; animation-delay: 1s; }
+        .floating-elements .dot3 { width: 15px; height: 15px; top: 70%; left: 40%; animation-delay: 2s; }
         .content {
             padding: 4rem 2rem;
             background: #f5f5f5;
@@ -69,6 +94,7 @@
             font-weight: 400;
             color: #000000;
             text-transform: uppercase;
+            animation: fadeInDown 1.5s ease-out;
         }
         .content h3 {
             font-family: 'Lora', serif;
@@ -77,6 +103,7 @@
             color: #000000;
             font-weight: 700;
             font-style: italic;
+            animation: slideIn 2s ease-out;
         }
         .content p {
             font-size: 1.2rem;
@@ -84,6 +111,7 @@
             line-height: 1.8;
             margin-bottom: 1.5rem;
             text-align: left;
+            animation: fadeInUp 2.5s ease-out;
         }
         .content ul {
             text-align: left;
@@ -93,6 +121,7 @@
         .content ul li {
             font-size: 1.2rem;
             color: #333333;
+            animation: fadeInUp 2.5s ease-out;
         }
         .content ul li strong {
             color: #000000;
@@ -113,6 +142,7 @@
             font-weight: 400;
             color: #000000;
             text-transform: uppercase;
+            animation: fadeInDown 1.5s ease-out;
         }
         .katie-section .photo-container {
             max-width: 600px;
@@ -131,6 +161,7 @@
             color: #333333;
             line-height: 1.8;
             margin-bottom: 1.5rem;
+            animation: fadeInUp 2.5s ease-out;
         }
         footer {
             background: #5a4b8c;
@@ -141,36 +172,35 @@
         }
         footer p {
             font-size: 1rem;
-            margin-bottom: 0.5rem;
             font-family: 'Tenor Sans', sans-serif;
         }
         footer a {
             color: #ffffff;
             text-decoration: underline;
-            font-family: 'Tenor Sans', sans-serif;
-            font-style: normal;
             transition: color 0.3s ease;
         }
         footer a:hover {
             color: #cccccc;
-            font-family: 'Tenor Sans', sans-serif;
-            font-style: normal;
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         @media (max-width: 768px) {
-            .nav .hamburger {
-                display: block;
-            }
-            .nav ul {
-                display: none;
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-                background: #5a4b8c;
-                padding: 1rem 0;
-            }
-            .nav input[type="checkbox"]:checked ~ ul {
-                display: flex;
-            }
+            .hero h1 { font-size: 3rem; }
+            .floating-elements .dot1, .dot2, .dot3 { display: none; }
             .content, .katie-section {
                 padding: 2rem 1rem;
                 margin: 1rem auto;
@@ -192,19 +222,15 @@
             .katie-section .photo-container {
                 max-width: 100%;
             }
-            footer {
-                padding: 1.5rem 0;
-            }
             footer p {
                 font-size: 0.9rem;
-                font-family: 'Tenor Sans', sans-serif;
             }
             footer a {
                 font-size: 0.9rem;
-                font-family: 'Tenor Sans', sans-serif;
             }
         }
         @media (max-width: 480px) {
+            .hero h1 { font-size: 2.5rem; }
             .content h2, .katie-section h2 {
                 font-size: 2.1rem;
             }
@@ -216,11 +242,9 @@
             }
             footer p {
                 font-size: 0.8rem;
-                font-family: 'Tenor Sans', sans-serif;
             }
             footer a {
                 font-size: 0.8rem;
-                font-family: 'Tenor Sans', sans-serif;
             }
         }
     </style>
@@ -228,8 +252,6 @@
 </head>
 <body>
     <nav class="nav">
-        <input type="checkbox" id="nav-check">
-        <label for="nav-check" class="hamburger">☰</label>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -237,10 +259,18 @@
             <li><a href="more.html">More</a></li>
         </ul>
     </nav>
-
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About Kekoa Capital</h1>
+        </div>
+        <div class="floating-elements">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+            <div class="dot3"></div>
+        </div>
+    </section>
     <div class="content">
-        <h2>About Kekoa Capital</h2>
-        <h3>Our Philosophy</h3>
+        <h2>Our Philosophy</h2>
         <p>At Kekoa Capital, we believe financial confidence comes from clarity, education, and a plan tailored to your unique goals. Whether you're a young professional navigating your first big financial decisions, a small business owner managing cash flow, or someone rebuilding after a life transition, we provide personalized financial planning to help you take control of your future.</p>
         <h3>Our Approach</h3>
         <p>We focus on comprehensive financial planning rather than investment management, offering fee-only services that prioritize your goals. Our services include:</p>
@@ -253,7 +283,6 @@
         <h3>Our Mission</h3>
         <p>At Kekoa Capital, we empower you to take bold steps toward your financial future—on your terms.</p>
     </div>
-
     <div class="katie-section">
         <h2>About Katie Hanlon</h2>
         <div class="photo-container">
@@ -261,7 +290,6 @@
         </div>
         <p>Coming soon...</p>
     </div>
-
     <footer>
         <p>© 2025 Kekoa Capital | <a href="mailto:katie@kekoa.capital">katie@kekoa.capital</a> | <a href="tel:978-270-7260">978-270-7260</a></p>
     </footer>
