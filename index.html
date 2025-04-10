@@ -62,21 +62,24 @@
             font-family: 'Tenor Sans', sans-serif;
             font-size: 4.5rem;
             text-transform: uppercase;
-            animation: fadeInDown 1.5s ease-out;
+            animation: fadeInDown 1s ease-out;
         }
         .hero h2 {
             font-family: 'Lora', serif;
             font-size: 2.5rem;
             font-weight: 700;
-            font-style: italic;
+            color: #8a7cc2;
             margin: 1rem 0;
-            animation: slideIn 2s ease-out;
+            animation: slideIn 1s ease-out;
+        }
+        .hero h2 em {
+            font-style: italic;
         }
         .hero p {
             font-size: 1.3rem;
             max-width: 600px;
             margin: 0 auto 2rem;
-            animation: fadeInUp 2.5s ease-out;
+            animation: fadeInUp 1s ease-out;
         }
         .hero .cta-button {
             background: #5a4b8c;
@@ -130,6 +133,106 @@
         footer a:hover {
             color: #cccccc;
         }
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            max-width: 500px;
+            width: 90%;
+            animation: floatPopup 5s infinite ease-in-out;
+        }
+        .popup.show {
+            display: block;
+        }
+        .popup h3 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: #000000;
+        }
+        .popup form {
+            display: flex;
+            flex-direction: column;
+        }
+        .popup label {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #333333;
+            text-align: left;
+        }
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .popup select {
+            appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6"><path fill="%23333" d="M0 0h12L6 6z"/></svg>') no-repeat right 1rem center;
+            background-size: 12px;
+        }
+        .popup textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .popup textarea::placeholder {
+            color: rgba(136, 136, 136, 0.5); /* Light grey, semi-transparent */
+            font-style: italic;
+        }
+        .popup textarea:focus::placeholder {
+            color: transparent; /* Placeholder disappears on focus */
+        }
+        .popup button {
+            background: #5a4b8c;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .popup button:hover {
+            background: #483a75;
+        }
+        .popup .close-btn {
+            background: #cccccc;
+            margin-top: 1rem;
+        }
+        .popup .close-btn:hover {
+            background: #aaaaaa;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .overlay.show {
+            display: block;
+        }
+        .error {
+            border: 2px solid #ff0000 !important; /* Highlight missing fields in red */
+        }
         @keyframes fadeInDown {
             0% { opacity: 0; transform: translateY(-50px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -151,23 +254,35 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
+        @keyframes floatPopup {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
+        }
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
             .hero h2 { font-size: 1.8rem; }
             .hero p { font-size: 1.1rem; }
             .hero .cta-button { padding: 1rem 2rem; font-size: 1rem; }
             .floating-elements .dot1, .dot2, .dot3 { display: none; }
+            .popup h3 { font-size: 1.5rem; }
+            .popup { padding: 1.5rem; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.5rem; }
             .hero h2 { font-size: 1.5rem; }
             .hero p { font-size: 1rem; }
             .hero .cta-button { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+            .popup h3 { font-size: 1.3rem; }
+            .popup input,
+            .popup select,
+            .popup textarea { font-size: 0.9rem; }
+            .popup button { font-size: 1rem; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Tenor+Sans&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Navigation Section -->
     <nav class="nav">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -176,12 +291,14 @@
             <li><a href="more.html">More</a></li>
         </ul>
     </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Kekoa Capital</h1>
-            <h2>Money Should Empower You, Not Overwhelm You</h2>
+            <h2>Money should <em>Empower</em>, not <em>Overwhelm</em> you</h2>
             <p>Life is full of unexpected twists, exciting opportunities, and big transitions—your financial plan should be ready for all of it. At Kekoa Capital, we make financial planning simple, so you can take control of your money, navigate life’s changes with confidence, and focus on what truly matters.</p>
-            <a href="#contact" class="cta-button">Get Started</a>
+            <a href="#" class="cta-button" onclick="showPopup()">Get Started</a>
         </div>
         <div class="floating-elements">
             <div class="dot1"></div>
@@ -189,8 +306,82 @@
             <div class="dot3"></div>
         </div>
     </section>
+
+    <!-- Updated Popup Section -->
+    <div class="overlay" id="popupOverlay"></div>
+    <div class="popup" id="contactPopup">
+        <h3>Get Started</h3>
+        <form id="contactForm" action="mailto:katie@kekoa.capital" method="POST" enctype="text/plain" onsubmit="return validateForm()">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Your First Name" required>
+            
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Your Last Name" required>
+            
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            
+            <label for="interest">What are you interested in?</label>
+            <select id="interest" name="interest" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="budgeting">Budgeting</option>
+                <option value="financial-planning">Financial Planning</option>
+                <option value="saving">Saving</option>
+                <option value="other">Other</option>
+            </select>
+            
+            <label for="message">Tell me more</label>
+            <textarea id="message" name="message" placeholder="[optional]"></textarea>
+            
+            <button type="submit">Submit</button>
+            <button type="button" class="close-btn" onclick="hidePopup()">Close</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
     <footer id="contact">
         <p>© 2025 Kekoa Capital | <a href="mailto:katie@kekoa.capital">katie@kekoa.capital</a> | <a href="tel:978-270-7260">978-270-7260</a></p>
     </footer>
+
+    <!-- Updated JavaScript Section -->
+    <script>
+        function showPopup() {
+            document.getElementById('contactPopup').classList.add('show');
+            document.getElementById('popupOverlay').classList.add('show');
+        }
+        function hidePopup() {
+            document.getElementById('contactPopup').classList.remove('show');
+            document.getElementById('popupOverlay').classList.remove('show');
+            // Clear form and remove error highlights when closing
+            document.getElementById('contactForm').reset();
+            clearErrors();
+        }
+        function validateForm() {
+            const requiredFields = ['firstName', 'lastName', 'phone', 'email', 'interest'];
+            let isValid = true;
+            clearErrors();
+
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field);
+                if (!input.value.trim()) {
+                    input.classList.add('error');
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                setTimeout(clearErrors, 2000); // Remove error highlight after 2 seconds
+            }
+
+            return isValid;
+        }
+        function clearErrors() {
+            const fields = document.querySelectorAll('.popup input, .popup select');
+            fields.forEach(field => field.classList.remove('error'));
+        }
+    </script>
 </body>
 </html>
