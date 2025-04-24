@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kekoa Capital - Services</title>
+    <title>Kekoa Capital - Services (Design 3)</title>
     <style>
         * {
             margin: 0;
@@ -11,11 +11,13 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Tenor Sans', sans-serif; /* Changed from Open Sans */
             background: #ffffff;
             color: #333333;
             line-height: 1.6;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .nav {
             position: sticky;
@@ -24,11 +26,13 @@
             padding: 1rem 2rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
             gap: 2rem;
         }
         .nav ul li a {
@@ -37,106 +41,158 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: color 0.3s ease;
+            text-transform: uppercase;
         }
         .nav ul li a:hover {
-            color: #000000;
-            font-family: 'Lora', serif;
+            color: #e9e4f5;
             font-style: italic;
+        }
+        .nav .book-call {
+            background: #e9e4f5;
+            color: #5a4b8c;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .nav .book-call:hover {
+            background: #d4cfee;
+            transform: scale(1.05);
         }
         .hero {
-            height: 100vh;
             position: relative;
             background: url('https://via.placeholder.com/1920x1080/ffffff/333333?text=Services+Background') no-repeat center center/cover;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 4rem 2rem;
+            text-align: left;
         }
-        .hero-content {
-            text-align: center;
-            color: #000000;
-            z-index: 2;
-        }
-        .hero h1 {
-            font-family: 'Tenor Sans', sans-serif;
-            font-size: 4.5rem;
-            text-transform: uppercase;
-            animation: fadeInDown 1.5s ease-out;
-        }
-        .floating-elements {
+        .hero::before {
+            content: '';
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            background: rgba(255, 255, 255, 0.7);
             z-index: 1;
         }
-        .floating-elements div {
-            position: absolute;
-            background: rgba(90, 75, 140, 0.2);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-        }
-        .floating-elements .dot1 { width: 20px; height: 20px; top: 10%; left: 20%; }
-        .floating-elements .dot2 { width: 30px; height: 30px; top: 30%; left: 70%; animation-delay: 1s; }
-        .floating-elements .dot3 { width: 15px; height: 15px; top: 70%; left: 40%; animation-delay: 2s; }
-        .content {
-            padding: 4rem 2rem;
-            background: #f5f5f5;
-            text-align: center;
-            max-width: 1200px;
-            margin: 2rem auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        .content h2 {
-            font-family: 'Tenor Sans', sans-serif;
-            font-size: 3.45rem;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            color: #000000;
+        .hero h1 {
+            font-family: 'Tenor Sans', sans-serif; /* Changed from Open Sans */
+            font-size: 2.5rem;
+            color: #5a4b8c;
             text-transform: uppercase;
-            animation: fadeInDown 1.5s ease-out;
-        }
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-        .service-item {
-            background: #ffffff;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            border-left: 5px solid #5a4b8c;
-            animation: fadeInUp 2.5s ease-out;
-        }
-        .service-item:hover {
-            transform: translateY(-8px);
-        }
-        .service-item h3 {
-            font-family: 'Lora', serif;
-            font-size: 1.8rem;
             margin-bottom: 1rem;
-            color: #000000;
-            font-weight: 700;
-            font-style: italic;
-            animation: slideIn 2s ease-out;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1.5s ease-out;
+            max-width: 800px;
+            margin-left: 0;
         }
-        .service-item p {
-            font-size: 1.1rem;
+        .hero p {
+            font-family: 'Tenor Sans', sans-serif; /* Changed from Open Sans */
+            font-size: 1.5rem;
             color: #333333;
+            max-width: 800px;
+            margin-left: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .services-section {
+            flex: 1;
+            padding: 2rem 0;
+        }
+        .service {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid #e9e4f5;
+        }
+        .service:last-child {
+            border-bottom: none;
+        }
+        /* Alternate text and image positions */
+        .service:nth-child(odd) .service-image {
+            order: -1; /* Image on the left, text on the right */
+        }
+        .service:nth-child(even) .service-content {
+            order: -1; /* Text on the left, image on the right */
+        }
+        .service-image {
+            flex: 1;
+            max-width: 400px;
+        }
+        .service-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .service-content {
+            flex: 1;
+            max-width: 600px;
+            text-align: left;
+        }
+        .service-content h2 {
+            font-family: 'Tenor Sans', sans-serif; /* Changed from Open Sans */
+            font-size: 2rem;
+            color: #5a4b8c;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .service-content .price {
+            font-family: 'Tenor Sans', sans-serif; /* Changed from Open Sans */
+            font-size: 1.5rem;
+            color: #333333;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .service-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .service-content ul {
+            list-style: none;
+            text-align: left;
+            max-width: 500px;
+            margin: 0;
+        }
+        .service-content ul li {
+            font-family: 'Tenor Sans', sans-serif; /* Changed from Open Sans */
+            font-size: 1.1rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .service-content ul li:before {
+            content: '✦';
+            color: #5a4b8c;
+            font-size: 1.1rem;
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+        }
+        .service-content ul ul {
+            margin-left: 2rem;
+        }
+        .service-content ul ul li:before {
+            content: '✧';
+            font-size: 1rem;
         }
         footer {
             background: #5a4b8c;
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 1rem 0;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
         footer p {
             font-size: 1rem;
-            font-family: 'Tenor Sans', sans-serif;
+            font-family: 'Tenor Sans', sans-serif; /* Changed from Open Sans */
         }
         footer a {
             color: #ffffff;
@@ -144,108 +200,126 @@
             transition: color 0.3s ease;
         }
         footer a:hover {
-            color: #cccccc;
+            color: #e9e4f5;
         }
         @keyframes fadeInDown {
             0% { opacity: 0; transform: translateY(-50px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        @keyframes slideIn {
-            0% { opacity: 0; transform: translateX(-100px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .floating-elements .dot1, .dot2, .dot3 { display: none; }
-            .content {
-                padding: 2rem 1rem;
-                margin: 1rem auto;
+            .service {
+                flex-direction: column;
+                text-align: left;
             }
-            .content h2 {
-                font-size: 2.5rem;
+            .service-image, .service-content {
+                order: 0 !important;
+                max-width: 100%;
             }
-            .service-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .service-item {
-                padding: 2rem;
-            }
-            .service-item h3 {
-                font-size: 1.5rem;
-            }
-            .service-item p {
-                font-size: 1rem;
-            }
-            footer p {
-                font-size: 0.9rem;
-            }
-            footer a {
-                font-size: 0.9rem;
-            }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.3rem; }
+            .service-content h2 { font-size: 1.8rem; }
+            .service-content .price { font-size: 1.3rem; }
+            .service-content p, .service-content ul li { font-size: 1rem; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2.5rem; }
-            .content h2 {
-                font-size: 2.1rem;
-            }
-            .service-item h3 {
-                font-size: 1.3rem;
-            }
-            .service-item p {
-                font-size: 0.9rem;
-            }
-            footer p {
-                font-size: 0.8rem;
-            }
-            footer a {
-                font-size: 0.8rem;
-            }
+            .hero h1 { font-size: 1.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .service-content h2 { font-size: 1.5rem; }
+            .service-content .price { font-size: 1.2rem; }
+            .service-content p, .service-content ul li { font-size: 0.9rem; }
+            footer p, footer a { font-size: 0.8rem; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Tenor+Sans&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="nav">
+        <div>Kekoa Capital</div>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="more.html">More</a></li>
+            <li><a href="index.html" aria-label="Home">Home</a></li>
+            <li><a href="about.html" aria-label="About">About</a></li>
+            <li><a href="services.html" aria-label="Services">Services</a></li>
+            <li><a href="more.html" aria-label="More">More</a></li>
         </ul>
+        <a href="#contact" class="book-call">Book a Call</a>
     </nav>
     <section class="hero">
-        <div class="hero-content">
-            <h1>Our Services</h1>
-        </div>
-        <div class="floating-elements">
-            <div class="dot1"></div>
-            <div class="dot2"></div>
-            <div class="dot3"></div>
-        </div>
+        <h1>Our Services</h1>
+        <p>Everybody's circumstances are unique, which of our services best fits your needs?</p>
     </section>
-    <div class="content">
-        <h2>Explore Our Offerings</h2>
-        <div class="service-grid">
-            <div class="service-item">
-                <h3>Service Placeholder 1</h3>
-                <p>Coming soon—explore innovative financial solutions tailored to your needs.</p>
+    <div class="services-section">
+        <div class="service">
+            <div class="service-image">
+                <img src="images/financial-planning.jpg" alt="Financial planner discussing a plan with a client at a desk">
             </div>
-            <div class="service-item">
-                <h3>Service Placeholder 2</h3>
-                <p>Coming soon—discover tools to enhance your financial confidence.</p>
+            <div class="service-content">
+                <h2>Financial Planning</h2>
+                <p class="price">$2,000</p>
+                <p>A personalized approach to managing your finances, designed to help you feel confident about your money and future.</p>
+                <ul>
+                    <li>A custom financial plan tailored to your goals</li>
+                    <li>Ongoing support for budgeting, saving, investing, insurance review, retirement planning and much more</li>
+                    <li>Recurring check-ins, modify your plan if needed</li>
+                    <li>Access to Monarch Money for easy financial tracking</li>
+                    <li>Love your plan? Renew annually for $2,000</li>
+                </ul>
             </div>
-            <div class="service-item">
-                <h3>Service Placeholder 3</h3>
-                <p>Coming soon—unlock personalized strategies for your future.</p>
+        </div>
+        <div class="service">
+            <div class="service-content">
+                <h2>Budgeting</h2>
+                <p class="price">$250</p>
+                <p>A simple and supportive way to take control of your finances and create a spending plan that works for you.</p>
+                <ul>
+                    <li>Two meetings (one to start, one follow-up in two months)</li>
+                    <li>Three-month access to Monarch Money to help track your budget</li>
+                    <li>Hands-on help building and reviewing a budget that fits your lifestyle</li>
+                    <li>Credit card review to ensure you’re using them wisely</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="images/budgeting.jpg" alt="Person reviewing a budget on a tablet with a calculator">
+            </div>
+        </div>
+        <div class="service">
+            <div class="service-image">
+                <img src="images/young-professionals.jpg" alt="Young professional in a modern office holding a laptop">
+            </div>
+            <div class="service-content">
+                <h2>Young Professionals</h2>
+                <p class="price">$300</p>
+                <p>A great starting point for those early in their careers who want to build good financial habits.</p>
+                <ul>
+                    <li>Review of your employee benefits so you can make the most of what’s offered</li>
+                    <li>A clear, easy-to-understand introduction to personal finance</li>
+                    <li>A simple budget overview to help you get started on the right foot</li>
+                </ul>
+            </div>
+        </div>
+        <div class="service">
+            <div class="service-content">
+                <h2>Introduction to Personal Finance</h2>
+                <p class="price">$150</p>
+                <p>A relaxed and informative session to help you gain confidence with your finances.</p>
+                <ul>
+                    <li>One 1.5-hour session or two 45-minute meetings—your preference</li>
+                    <li>Overview of essential topics, including:
+                        <ul>
+                            <li>401(k)s and IRAs</li>
+                            <li>Budgeting Fundamentals</li>
+                            <li>Credit Cards and Credit Scores</li>
+                            <li>Student Loans & Debt Management</li>
+                            <li>Short-term Saving and Long-term Investing</li>
+                            <li>Understanding credit cards and credit scores</li>
+                            <li>Managing student loans</li>
+                        </ul>
+                    </li>
+                    <li>Opportunity to ask any personal finance questions</li>
+                    <li>One-month follow up access via email or phone for additional guidance</li>
+                </ul>
+            </div>
+            <div class="service-image">
+                <img src="images/intro-to-finance.jpg" alt="Small group workshop on personal finance with a whiteboard">
             </div>
         </div>
     </div>
