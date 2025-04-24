@@ -3,15 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kekoa Capital - Home</title>
-    <!-- Add EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        // Initialize EmailJS with your User ID
-        (function(){
-            emailjs.init("ltsNQ71HwNw9oGDIv"); // Your EmailJS User ID
-        })();
-    </script>
+    <title>Kekoa Capital</title>
     <style>
         * {
             margin: 0;
@@ -19,11 +11,11 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Tenor Sans', sans-serif;
             background: #ffffff;
             color: #333333;
             line-height: 1.6;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         .nav {
             position: sticky;
@@ -32,11 +24,13 @@
             padding: 1rem 2rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
             gap: 2rem;
         }
         .nav ul li a {
@@ -45,307 +39,516 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: color 0.3s ease;
+            text-transform: uppercase;
         }
         .nav ul li a:hover {
-            color: #000000;
-            font-family: 'Lora', serif;
+            color: #e9e4f5;
             font-style: italic;
         }
-        .hero {
-            height: 100vh;
-            position: relative;
-            background: url('https://via.placeholder.com/1920x1080/ffffff/333333?text=Kekoa+Capital+Background') no-repeat center center/cover;
-            overflow: hidden;
-        }
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: #000000;
-            z-index: 2;
-        }
-        .hero h1 {
-            font-family: 'Tenor Sans', sans-serif;
-            font-size: 4.5rem;
-            text-transform: uppercase;
-            animation: fadeInDown 1s ease-out;
-        }
-        .hero h2 {
-            font-family: 'Lora', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #8a7cc2;
-            margin: 1rem 0;
-            animation: slideIn 1s ease-out;
-        }
-        .hero h2 em {
-            font-style: italic;
-        }
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 1s ease-out;
-        }
-        .hero .cta-button {
-            background: #5a4b8c;
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-family: 'Lora', serif;
-            font-style: italic;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            animation: pulse 3s infinite;
-        }
-        .hero .cta-button:hover {
-            background: #4a3b7c;
-            transform: scale(1.1);
-        }
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        .floating-elements div {
-            position: absolute;
-            background: rgba(90, 75, 140, 0.2);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-        }
-        .floating-elements .dot1 { width: 20px; height: 20px; top: 10%; left: 20%; }
-        .floating-elements .dot2 { width: 30px; height: 30px; top: 30%; left: 70%; animation-delay: 1s; }
-        .floating-elements .dot3 { width: 15px; height: 15px; top: 70%; left: 40%; animation-delay: 2s; }
-        footer {
-            background: #5a4b8c;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        }
-        footer p {
-            font-size: 1rem;
-            font-family: 'Tenor Sans', sans-serif;
-        }
-        footer a {
-            color: #ffffff;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-        footer a:hover {
-            color: #cccccc;
-        }
-        /* Popup Styles */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .nav .book-call {
             background: #ffffff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            z-index: 1001;
-            max-width: 500px;
-            width: 90%;
-        }
-        .popup.show {
-            display: block;
-        }
-        .popup h3 {
-            font-family: 'Tenor Sans', sans-serif;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
             color: #000000;
-        }
-        .popup .close-x {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #333333;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .popup .close-x:hover {
-            color: #5a4b8c;
-        }
-        .popup form {
-            display: flex;
-            flex-direction: column;
-        }
-        .popup label {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #333333;
-            text-align: left;
-        }
-        .popup input,
-        .popup select,
-        .popup textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
             border: 1px solid #cccccc;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'Open Sans', sans-serif;
-        }
-        .popup select {
-            appearance: none;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6"><path fill="%23333" d="M0 0h12L6 6z"/></svg>') no-repeat right 1rem center;
-            background-size: 12px;
-        }
-        .popup textarea {
-            height: 100px;
-            resize: vertical;
-        }
-        .popup textarea::placeholder {
-            color: rgba(136, 136, 136, 0.5);
-            font-style: italic;
-        }
-        .popup textarea:focus::placeholder {
-            color: transparent;
-        }
-        .popup button {
-            background: #5a4b8c;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Tenor Sans', sans-serif;
+            border-radius: 0;
             font-size: 1.1rem;
-            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
             transition: background 0.3s ease;
         }
-        .popup button:hover {
-            background: #483a75;
+        .nav .book-call:hover {
+            background: #f0f0f0;
         }
-        .popup button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
+        .nav .book-call::after {
+            content: '→';
+            margin-left: 0.5rem;
         }
-        .popup .close-btn {
-            background: #cccccc;
-            margin-top: 1rem;
+        /* Add scroll-margin-top to each section to account for nav bar height */
+        #home, #about, #services, #contact {
+            scroll-margin-top: 4rem;
         }
-        .popup .close-btn:hover {
-            background: #aaaaaa;
+        /* Home Section */
+        #home {
+            position: relative;
+            background: url('https://via.placeholder.com/1920x1080/ffffff/333333?text=Home+Background') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 4rem 2rem;
         }
-        .overlay {
-            display: none;
-            position: fixed;
+        #home::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: 1;
         }
-        .overlay.show {
-            display: block;
-        }
-        .error {
-            border: 2px solid #ff0000 !important;
-        }
-        .confirmation {
-            display: none;
-            text-align: center;
+        #home h1 {
+            font-size: 3rem;
             color: #5a4b8c;
-            font-family: 'Tenor Sans', sans-serif;
-            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        #home p {
+            font-size: 1.5rem;
+            color: #333333;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 2rem;
+        }
+        #home .cta-button {
+            background: #ffffff;
+            color: #000000;
+            padding: 0.75rem 2rem;
+            border: 1px solid #cccccc;
+            border-radius: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            position: relative;
+            z-index: 2;
+            transition: background 0.3s ease;
+        }
+        #home .cta-button:hover {
+            background: #f0f0f0;
+        }
+        #home .cta-button::after {
+            content: '→';
+            margin-left: 0.5rem;
+        }
+        /* About Section */
+        #about {
+            padding: 3rem 2rem;
+            background: #f9f9f9;
+        }
+        #about h2 {
+            font-size: 2.5rem;
+            color: #5a4b8c;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .about-inner {
+            display: flex;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .about-content {
+            flex: 1;
+        }
+        .about-content h3 {
+            font-size: 2rem;
+            color: #5a4b8c;
+            text-transform: uppercase;
             margin-bottom: 1rem;
         }
-        .confirmation.show {
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .about-image {
+            flex: 1;
+            max-width: 400px;
+        }
+        .about-image h3 {
+            font-size: 2rem;
+            color: #5a4b8c;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .about-image p {
+            font-size: 1.1rem;
+        }
+        /* Services Section */
+        #services {
+            padding: 3rem 2rem;
+        }
+        #services h2 {
+            font-size: 2.5rem;
+            color: #5a4b8c;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .services-hero {
+            position: relative;
+            padding: 2rem 0;
+            text-align: left;
+        }
+        .services-hero p.subheading {
+            font-size: 1.5rem;
+            color: #333333;
+            max-width: 800px;
+        }
+        .services-section {
+            padding: 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            gap: 2rem;
+            border-bottom: 1px solid #e9e4f5;
+        }
+        .service:last-child {
+            border-bottom: none;
+        }
+        .service:nth-child(odd) .service-image {
+            order: -1;
+        }
+        .service:nth-child(even) .service-content {
+            order: -1;
+        }
+        .service-image {
+            flex: 1;
+            max-width: 400px;
+        }
+        .service-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .service-content {
+            flex: 1;
+            max-width: 600px;
+            text-align: left;
+        }
+        .service-content h3 {
+            font-size: 2rem;
+            color: #5a4b8c;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .service-content .price {
+            font-size: 1.5rem;
+            color: #333333;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .service-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .service-content ul {
+            list-style: none;
+            text-align: left;
+            max-width: 500px;
+            margin: 0;
+        }
+        .service-content ul li {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .service-content ul li:before {
+            content: '✦';
+            color: #5a4b8c;
+            font-size: 1.1rem;
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+        }
+        .service-content ul ul {
+            margin-left: 2rem;
+        }
+        .service-content ul ul li:before {
+            content: '✧';
+            font-size: 1rem;
+        }
+        /* Contact Section */
+        #contact {
+            background: #5a4b8c;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+        #contact h2 {
+            font-size: 2.5rem;
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 2rem;
+            border: 1px solid #cccccc;
+            border-radius: 0;
+        }
+        .contact-form label {
             display: block;
+            font-size: 1.1rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #cccccc;
+            border-radius: 0;
+            font-size: 1rem;
+            font-family: 'Tenor Sans', sans-serif;
+        }
+        .contact-form select {
+            appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6"><path fill="%23333" d="M0 0h12L6 6z"/></svg>') no-repeat right 1rem center;
+            background-size: 12px;
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .contact-form button {
+            background: #ffffff;
+            color: #000000;
+            padding: 0.75rem 2rem;
+            border: 1px solid #cccccc;
+            border-radius: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .contact-form button:hover {
+            background: #f0f0f0;
+        }
+        .contact-form button::after {
+            content: '→';
+            margin-left: 0.5rem;
+        }
+        #contact .spacer {
+            flex: 1;
+        }
+        #contact p.contact-info {
+            font-size: 1.1rem;
+            text-align: center;
+            padding-top: 2rem;
+        }
+        #contact p.contact-info a {
+            color: #ffffff;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        #contact p.contact-info a:hover {
+            color: #e9e4f5;
         }
         @keyframes fadeInDown {
             0% { opacity: 0; transform: translateY(-50px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        @keyframes slideIn {
-            0% { opacity: 0; transform: translateX(-100px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .hero h2 { font-size: 1.8rem; }
-            .hero p { font-size: 1.1rem; }
-            .hero .cta-button { padding: 1rem 2rem; font-size: 1rem; }
-            .floating-elements .dot1, .dot2, .dot3 { display: none; }
-            .popup h3 { font-size: 1.5rem; }
-            .popup { padding: 1.5rem; }
+            #home { padding: 2rem 1rem; }
+            #home h1 { font-size: 2rem; }
+            #home p { font-size: 1.3rem; }
+            #home .cta-button { width: 100%; max-width: 300px; }
+            .about-inner, .service { flex-direction: column; text-align: left; }
+            .about-image, .service-image, .service-content { order: 0 !important; max-width: 100%; }
+            #about h2, #services h2, #contact h2 { font-size: 2rem; }
+            .services-hero p.subheading { font-size: 1.3rem; }
+            .service-content h3 { font-size: 1.8rem; }
+            .service-content .price { font-size: 1.3rem; }
+            .service-content p, .service-content ul li { font-size: 1rem; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero h2 { font-size: 1.5rem; }
-            .hero p { font-size: 1rem; }
-            .hero .cta-button { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
-            .popup h3 { font-size: 1.3rem; }
-            .popup input,
-            .popup select,
-            .popup textarea { font-size: 0.9rem; }
-            .popup button { font-size: 1rem; }
+            #home h1 { font-size: 1.5rem; }
+            #home p { font-size: 1.1rem; }
+            #about h2, #services h2, #contact h2 { font-size: 1.5rem; }
+            .services-hero p.subheading { font-size: 1.1rem; }
+            .service-content h3 { font-size: 1.5rem; }
+            .service-content .price { font-size: 1.2rem; }
+            .service-content p, .service-content ul li { font-size: 0.9rem; }
+            #contact p.contact-info { font-size: 0.9rem; }
+            .contact-form { padding: 1.5rem; }
+            .contact-form label, .contact-form input, .contact-form select, .contact-form textarea, .contact-form button {
+                font-size: 0.9rem;
+            }
+            .nav .book-call { font-size: 0.9rem; padding: 0.4rem 0.8rem; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Tenor+Sans&family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("ltsNQ71HwNw9oGDIv");
+        })();
+        
+        function sendEmail(event) {
+            event.preventDefault();
+            const form = event.target;
+            emailjs.send("service_tvmj2qs", "template_19ctsyp", {
+                first_name: form.firstName.value,
+                last_name: form.lastName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                interest: form.interest.value,
+                message: form.message.value
+            }).then(
+                function(response) {
+                    alert("Message sent successfully!");
+                    form.reset();
+                },
+                function(error) {
+                    alert("Failed to send message. Please try again later.");
+                }
+            );
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Section -->
     <nav class="nav">
+        <div>Kekoa Capital</div>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="more.html">More</a></li>
+            <li><a href="#home" aria-label="Home">Home</a></li>
+            <li><a href="#about" aria-label="About">About</a></li>
+            <li><a href="#services" aria-label="Services">Services</a></li>
+            <li><a href="#contact" aria-label="Contact">Contact</a></li>
         </ul>
+        <a href="#contact" class="book-call" aria-label="Book a call">Book a Call</a>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Kekoa Capital</h1>
-            <h2>Money should <em>Empower</em>, not <em>Overwhelm</em> you</h2>
-            <p>Life is full of unexpected twists, exciting opportunities, and big transitions—your financial plan should be ready for all of it. At Kekoa Capital, we make financial planning simple, so you can take control of your money, navigate life’s changes with confidence, and focus on what truly matters.</p>
-            <a href="#" class="cta-button" onclick="showPopup()">Get Started</a>
-        </div>
-        <div class="floating-elements">
-            <div class="dot1"></div>
-            <div class="dot2"></div>
-            <div class="dot3"></div>
+    <!-- Home Section -->
+    <section id="home">
+        <h1>Welcome to Kekoa Capital</h1>
+        <p>Money should Empower, not Overwhelm.</p>
+        <a href="#contact" class="cta-button" aria-label="Book a call">Book a Call</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-inner">
+            <div class="about-content">
+                <h3>Our Philosophy</h3>
+                <p>The traditional asset-based fee model is broken.</p>
+                <p>Why should you pay a higher fee for the same service when your assets grow? Say your assets grow from $200k to $1m—a 1% fee would mean your annual cost jumps from $2,000 to $10,000, even though the service remains the same. We reject that. At Kekoa Capital, we charge a flat fee so your success isn’t penalized. You’ll get the same exceptional service—whether one-off or ongoing—for a consistent price, helping you navigate any financial decision that lies ahead.</p>
+                <h3 style="margin-top: 2rem;">Our Mission</h3>
+                <p>Financial planning doesn’t have to be daunting—it can be a source of excitement and possibility. At Kekoa Capital, we guarantee to simplify the process, giving you the clarity and confidence to take charge of your future. We take the time to understand your aspirations, crafting a plan that fits your life—not a one-size-fits-all template. My goal is to empower you with the confidence and understanding you need to thrive, no matter where you’re starting or where you're going.</p>
+                <p>Money shouldn’t overwhelm you—it should empower you. We’re here to make that a reality, ensuring you feel supported and in control every step of the way.</p>
+            </div>
+            <div class="about-image">
+                <h3>About Katie and Koa...</h3>
+                <img src="https://raw.githubusercontent.com/KatieKoa/kekoa-capital/main/katie-hanlon.jpg" alt="Katie with her dog Koa">
+                <p>Coming soon...</p>
+            </div>
         </div>
     </section>
 
-    <!-- Popup Section -->
-    <div class="overlay" id="popupOverlay"></div>
-    <div class="popup" id="contactPopup">
-        <button class="close-x" onclick="hidePopup()">×</button>
-        <h3>Get Started</h3>
-        <div class="confirmation" id="confirmationMessage">Thank you for your submission!</div>
-        <form id="contactForm" onsubmit="return handleSubmit(event)">
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-hero">
+            <p class="subheading">Everybody's circumstances are unique, which of our services best fits your needs?</p>
+        </div>
+        <div class="services-section">
+            <div class="service">
+                <div class="service-image">
+                    <img src="images/financial-planning.jpg" alt="Financial planner discussing a plan with a client at a desk">
+                </div>
+                <div class="service-content">
+                    <h3>Financial Planning</h3>
+                    <p class="price">$2,000</p>
+                    <p>A personalized approach to managing your finances, designed to help you feel confident about your money and future.</p>
+                    <ul>
+                        <li>A custom financial plan tailored to your goals</li>
+                        <li>Ongoing support for budgeting, saving, investing, insurance review, retirement planning and much more</li>
+                        <li>Recurring check-ins, modify your plan if needed</li>
+                        <li>Access to Monarch Money for easy financial tracking</li>
+                        <li>Love your plan? Renew annually for $2,000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service">
+                <div class="service-content">
+                    <h3>Budgeting</h3>
+                    <p class="price">$250</p>
+                    <p>A simple and supportive way to take control of your finances and create a spending plan that works for you.</p>
+                    <ul>
+                        <li>Two meetings (one to start, one follow-up in two months)</li>
+                        <li>Three-month access to Monarch Money to help track your budget</li>
+                        <li>Hands-on help building and reviewing a budget that fits your lifestyle</li>
+                        <li>Credit card review to ensure you’re using them wisely</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="images/budgeting.jpg" alt="Person reviewing a budget on a tablet with a calculator">
+                </div>
+            </div>
+            <div class="service">
+                <div class="service-image">
+                    <img src="images/young-professionals.jpg" alt="Young professional in a modern office holding a laptop">
+                </div>
+                <div class="service-content">
+                    <h3>Young Professionals</h3>
+                    <p class="price">$300</p>
+                    <p>A great starting point for those early in their careers who want to build good financial habits.</p>
+                    <ul>
+                        <li>Review of your employee benefits so you can make the most of what’s offered</li>
+                        <li>A clear, easy-to-understand introduction to personal finance</li>
+                        <li>A simple budget overview to help you get started on the right foot</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service">
+                <div class="service-content">
+                    <h3>Introduction to Personal Finance</h3>
+                    <p class="price">$150</p>
+                    <p>A relaxed and informative session to help you gain confidence with your finances.</p>
+                    <ul>
+                        <li>One 1.5-hour session or two 45-minute meetings—your preference</li>
+                        <li>Overview of essential topics, including:
+                            <ul>
+                                <li>401(k)s and IRAs</li>
+                                <li>Budgeting Fundamentals</li>
+                                <li>Credit Cards and Credit Scores</li>
+                                <li>Student Loans & Debt Management</li>
+                                <li>Short-term Saving and Long-term Investing</li>
+                                <li>Understanding credit cards and credit scores</li>
+                                <li>Managing student loans</li>
+                            </ul>
+                        </li>
+                        <li>Opportunity to ask any personal finance questions</li>
+                        <li>One-month follow up access via email or phone for additional guidance</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="images/intro-to-finance.jpg" alt="Small group workshop on personal finance with a whiteboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form class="contact-form" onsubmit="sendEmail(event)">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" placeholder="Your First Name" required>
             
@@ -361,103 +564,19 @@
             <label for="interest">What are you interested in?</label>
             <select id="interest" name="interest" required>
                 <option value="" disabled selected>Select an option</option>
-                <option value="budgeting">Budgeting</option>
-                <option value="financial-planning">Financial Planning</option>
-                <option value="saving">Saving</option>
-                <option value="other">Other</option>
+                <option value="Financial Planning">Financial Planning</option>
+                <option value="Budgeting">Budgeting</option>
+                <option value="Young Professionals">Young Professionals</option>
+                <option value="Introduction to Personal Finance">Introduction to Personal Finance</option>
             </select>
             
-            <label for="message">Tell me more</label>
-            <textarea id="message" name="message" placeholder="[optional]"></textarea>
+            <label for="message">Tell me more (optional)</label>
+            <textarea id="message" name="message" placeholder="Tell me more"></textarea>
             
-            <button type="submit" id="submitButton">Submit</button>
-            <button type="button" class="close-btn" onclick="hidePopup()">Close</button>
+            <button type="submit">Submit</button>
         </form>
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact">
-        <p>© 2025 Kekoa Capital | <a href="mailto:katie@kekoa.capital">katie@kekoa.capital</a> | <a href="tel:978-270-7260">978-270-7260</a></p>
-    </footer>
-
-    <!-- Updated JavaScript Section -->
-    <script>
-        function showPopup() {
-            document.getElementById('contactPopup').classList.add('show');
-            document.getElementById('popupOverlay').classList.add('show');
-            document.getElementById('confirmationMessage').classList.remove('show');
-            document.getElementById('contactForm').style.display = 'block';
-            document.getElementById('submitButton').disabled = false; // Re-enable submit button
-        }
-
-        function hidePopup() {
-            document.getElementById('contactPopup').classList.remove('show');
-            document.getElementById('popupOverlay').classList.remove('show');
-            document.getElementById('contactForm').reset();
-            clearErrors();
-            document.getElementById('confirmationMessage').classList.remove('show');
-            document.getElementById('contactForm').style.display = 'block';
-            document.getElementById('submitButton').disabled = false; // Re-enable submit button
-        }
-
-        function validateForm() {
-            const requiredFields = ['firstName', 'lastName', 'phone', 'email', 'interest'];
-            let isValid = true;
-            clearErrors();
-
-            requiredFields.forEach(field => {
-                const input = document.getElementById(field);
-                if (!input.value.trim()) {
-                    input.classList.add('error');
-                    isValid = false;
-                }
-            });
-
-            if (!isValid) {
-                setTimeout(clearErrors, 2000);
-            }
-
-            return isValid;
-        }
-
-        function clearErrors() {
-            const fields = document.querySelectorAll('.popup input, .popup select');
-            fields.forEach(field => field.classList.remove('error'));
-        }
-
-        function handleSubmit(event) {
-            event.preventDefault();
-
-            if (!validateForm()) {
-                return false;
-            }
-
-            // Disable the submit button to prevent multiple submissions
-            const submitButton = document.getElementById('submitButton');
-            submitButton.disabled = true;
-
-            const form = document.getElementById('contactForm');
-            const formData = {
-                firstName: form.firstName.value,
-                lastName: form.lastName.value,
-                phone: form.phone.value,
-                email: form.email.value,
-                interest: form.interest.value,
-                message: form.message.value || 'Not provided'
-            };
-
-            emailjs.send('service_tvmj2qs', 'template_19ctsyp', formData)
-                .then(() => {
-                    form.style.display = 'none';
-                    document.getElementById('confirmationMessage').classList.add('show');
-                }, (error) => {
-                    alert('There was an error submitting the form. Please try again later.');
-                    console.error('EmailJS error:', error);
-                    submitButton.disabled = false; // Re-enable if submission fails
-                });
-
-            return false;
-        }
-    </script>
+        <div class="spacer"></div>
+        <p class="contact-info">© 2025 Kekoa Capital | <a href="mailto:katie@kekoa.capital">katie@kekoa.capital</a> | <a href="tel:978-270-7260">978-270-7260</a></p>
+    </section>
 </body>
 </html>
