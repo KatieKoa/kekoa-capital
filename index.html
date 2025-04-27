@@ -10,12 +10,14 @@
             padding: 0;
             box-sizing: border-box;
         }
+        html {
+            scroll-behavior: smooth; /* Move scroll-behavior to html for broader compatibility */
+        }
         body {
             font-family: 'Tenor Sans', sans-serif;
             background: #ffffff;
             color: #333333;
             line-height: 1.6;
-            scroll-behavior: smooth;
         }
         .nav {
             position: sticky;
@@ -66,7 +68,7 @@
             margin: 0 auto;
         }
         #home, #about, #services, #contact {
-            scroll-margin-top: 6rem;
+            scroll-margin-top: 80px; /* Adjusted to match the approximate height of the nav */
         }
         #home {
             position: relative;
@@ -228,7 +230,7 @@
         .service-image {
             flex: 1;
             max-width: 400px;
-            display: none; /* Hide the image placeholders */
+            display: none;
         }
         .service-image img {
             width: 100%;
@@ -442,6 +444,21 @@
                 }
             );
         }
+
+        // JavaScript fallback for smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
