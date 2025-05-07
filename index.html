@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
         html {
-            scroll-behavior: smooth; /* Move scroll-behavior to html for broader compatibility */
+            scroll-behavior: smooth;
         }
         body {
             font-family: 'Tenor Sans', sans-serif;
@@ -29,6 +29,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .nav .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         .nav ul {
             list-style: none;
@@ -57,6 +61,12 @@
         .nav .schedule-meeting:hover {
             color: #333333;
         }
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #5a4b8c;
+        }
         .section-divider {
             margin: 2rem 0;
             text-align: center;
@@ -68,7 +78,7 @@
             margin: 0 auto;
         }
         #home, #about, #services, #contact {
-            scroll-margin-top: 80px; /* Adjusted to match the approximate height of the nav */
+            scroll-margin-top: 80px;
         }
         #home {
             position: relative;
@@ -105,7 +115,7 @@
         }
         #about {
             min-height: 100vh;
-            padding: 2rem 2rem;
+            padding: 2rem 1rem;
             background: #ffffff;
         }
         #about h2 {
@@ -114,7 +124,7 @@
             font-size: 2.5rem;
             color: #5a4b8c;
             text-transform: uppercase;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: left;
             padding-left: 5%;
         }
@@ -182,7 +192,7 @@
         }
         #services {
             min-height: 100vh;
-            padding: 1rem 2rem;
+            padding: 1rem 1rem;
             background: #ffffff;
         }
         #services h2 {
@@ -193,12 +203,12 @@
             text-transform: uppercase;
             margin-bottom: 1rem;
             text-align: left;
-            padding-left: 2rem;
+            padding-left: 1rem;
         }
         .services-hero {
             text-align: left;
-            margin-bottom: 2rem;
-            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
         }
         .services-hero p.subheading {
             font-family: 'Comic Sans MS', sans-serif;
@@ -214,9 +224,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3rem 2rem;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            padding: 2rem 1rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
         .service:last-child {
             margin-bottom: 0;
@@ -297,7 +307,7 @@
             background: #ffffff;
             color: #333333;
             text-align: center;
-            padding: 2rem 0;
+            padding: 2rem 1rem;
             position: relative;
         }
         #contact h2 {
@@ -382,38 +392,138 @@
             color: #483a75;
         }
         @media (max-width: 768px) {
-            #home { padding: 2rem 1rem; min-height: 100vh; }
-            #home h1 { font-size: 2.5rem; }
-            #home p { font-size: 1.3rem; }
-            #home .cta-button { width: 100%; max-width: 300px; }
-            .about-top { flex-direction: column; }
-            .about-image { max-width: 100%; }
-            #about h2, #services h2, #contact h2 { font-size: 2rem; }
-            .services-hero p.subheading { font-size: 1rem; }
-            .service { flex-direction: column; text-align: left; }
-            .service-image, .service-content { order: 0 !important; max-width: 100%; }
-            .service-content h3 { font-size: 1.8rem; }
-            .service-content .price { font-size: 1.3rem; }
-            .service-content p, .service-content ul li { font-size: 1rem; }
+            .nav {
+                flex-wrap: wrap;
+                padding: 1rem;
+            }
+            .nav .logo {
+                font-size: 1.2rem;
+            }
+            .nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #e9e4f5;
+                padding: 1rem 0;
+            }
+            .nav ul.active {
+                display: flex;
+            }
+            .nav ul li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            .nav ul li a {
+                font-size: 1rem;
+            }
+            .nav .schedule-meeting {
+                display: none; /* Hide on mobile to save space */
+            }
+            .hamburger {
+                display: block;
+            }
+            #home {
+                padding: 2rem 1rem;
+                min-height: 80vh;
+            }
+            #home h1 {
+                font-size: 2.2rem;
+            }
+            #home p {
+                font-size: 1.2rem;
+            }
+            #home .cta-button {
+                width: 100%;
+                max-width: 300px;
+                font-size: 1rem;
+                padding: 0.5rem;
+            }
+            .about-top {
+                flex-direction: column;
+            }
+            .about-image {
+                max-width: 100%;
+            }
+            #about h2, #services h2, #contact h2 {
+                font-size: 1.8rem;
+                padding-left: 1rem;
+            }
+            .services-hero p.subheading {
+                font-size: 1rem;
+            }
+            .service {
+                flex-direction: column;
+                text-align: left;
+                padding: 1.5rem 1rem;
+            }
+            .service-image, .service-content {
+                order: 0 !important;
+                max-width: 100%;
+            }
+            .service-content {
+                text-align: center; /* Center text since images are hidden */
+            }
+            .service-content h3 {
+                font-size: 1.6rem;
+            }
+            .service-content .price {
+                font-size: 1.2rem;
+            }
+            .service-content p, .service-content ul li {
+                font-size: 0.95rem;
+            }
             .contact-form {
                 max-width: 100%;
                 padding: 1rem;
             }
+            .contact-form label {
+                font-size: 0.9rem;
+            }
+            .contact-form input,
+            .contact-form select,
+            .contact-form textarea {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
             .contact-form textarea {
                 min-height: 150px;
             }
+            .contact-form button {
+                font-size: 1rem;
+                padding: 0.5rem 1.5rem;
+            }
         }
         @media (max-width: 480px) {
-            #home h1 { font-size: 2rem; }
-            #home p { font-size: 1.1rem; }
-            #about h2, #services h2, #contact h2 { font-size: 1.5rem; }
-            .services-hero p.subheading { font-size: 0.9rem; }
-            .service-content h3 { font-size: 1.5rem; }
-            .service-content .price { font-size: 1.2rem; }
-            .service-content p, .service-content ul li { font-size: 0.9rem; }
-            #contact p.contact-info { font-size: 0.9rem; }
-            .contact-form { padding: 1rem; }
-            .contact-form label, .contact-form input, .contact-form select, .contact-form textarea, .contact-form button { font-size: 0.9rem; }
+            #home h1 {
+                font-size: 1.8rem;
+            }
+            #home p {
+                font-size: 1rem;
+            }
+            #about h2, #services h2, #contact h2 {
+                font-size: 1.5rem;
+            }
+            .services-hero p.subheading {
+                font-size: 0.9rem;
+            }
+            .service-content h3 {
+                font-size: 1.4rem;
+            }
+            .service-content .price {
+                font-size: 1.1rem;
+            }
+            .service-content p, .service-content ul li {
+                font-size: 0.9rem;
+            }
+            #contact p.contact-info {
+                font-size: 0.9rem;
+            }
+            .contact-form {
+                padding: 0.75rem;
+            }
+            .contact-form label, .contact-form input, .contact-form select, .contact-form textarea, .contact-form button {
+                font-size: 0.85rem;
+            }
             .contact-form textarea {
                 min-height: 120px;
             }
@@ -459,13 +569,24 @@
                 }
             });
         });
+
+        // Hamburger menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navUl = document.querySelector('.nav ul');
+
+            hamburger.addEventListener('click', () => {
+                navUl.classList.toggle('active');
+                hamburger.textContent = navUl.classList.contains('active') ? '✕' : '☰';
+            });
+        });
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="nav">
-        <div>Kekoa Capital</div>
+        <div class="logo">Kekoa Capital</div>
         <ul>
             <li><a href="#home" aria-label="Home">Home</a></li>
             <li><a href="#about" aria-label="About">About</a></li>
@@ -473,6 +594,7 @@
             <li><a href="#contact" aria-label="Contact">Contact</a></li>
         </ul>
         <a href="#contact" class="schedule-meeting" aria-label="Schedule a meeting">Schedule a meeting</a>
+        <div class="hamburger">☰</div>
     </nav>
     <section id="home">
         <h1>Welcome to Kekoa Capital</h1>
