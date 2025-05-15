@@ -156,8 +156,8 @@
             color: #666666;
             margin-bottom: 1.5rem;
         }
-        .about-content h3:first-of-type + p + p {
-            margin-bottom: 2.5rem;
+        .about-content h3:first-of-type + p {
+            margin-bottom: 2.5rem; /* Adjusted to maintain spacing after removing the paragraph */
         }
         .about-image {
             flex: 1;
@@ -417,7 +417,7 @@
                 font-size: 1rem;
             }
             .nav .schedule-meeting {
-                display: none; /* Hide on mobile to save space */
+                display: none;
             }
             .hamburger {
                 display: block;
@@ -461,7 +461,7 @@
                 max-width: 100%;
             }
             .service-content {
-                text-align: center; /* Center text since images are hidden */
+                text-align: center;
             }
             .service-content h3 {
                 font-size: 1.6rem;
@@ -555,7 +555,6 @@
             );
         }
 
-        // JavaScript fallback for smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -570,7 +569,6 @@
             });
         });
 
-        // Hamburger menu toggle
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.querySelector('.hamburger');
             const navUl = document.querySelector('.nav ul');
@@ -610,8 +608,7 @@
             <div class="about-top">
                 <div class="about-content">
                     <h3>Our Philosophy</h3>
-                    <p>The traditional asset-based fee model is broken.</p>
-                    <p>Why should you pay more for the same service just because your assets grow? If your portfolio increases from $200,000 to $1,000,000, a 1% fee means your annual cost jumps from $2,000 to $10,000. But is there an additional $8,000 of value being added to the services you're receiving? At Kekoa Capital, we don't think so. That's why we offer a flat fee that ensures your financial success isn't penalized. Whether you need one-time advice or ongoing support, you'll get the same exceptional service at a consistent price—so you can focus on what really matters: your future.</p>
+                    <p>At Kekoa Capital, we believe you shouldn’t pay more for the same service just because your assets grow. For example, if your portfolio increases from $200,000 to $1,000,000, a typical 1% fee would raise your annual cost from $2,000 to $10,000—without adding $8,000 in value. We offer a flat fee instead, ensuring your financial success isn’t penalized. Whether you need one-time advice or ongoing support, you’ll get exceptional service at a consistent price, so you can focus on what really matters: your future.</p>
                     <h3>Our Mission</h3>
                     <p>Financial planning shouldn't be overwhelming; it should be empowering. At Kekoa Capital, we simplify the process, making it easier for you to understand and take control of your financial future. We don't offer one-size-fits-all solutions—instead, we craft a plan that's tailored to your unique goals and life.</p>
                     <p>Money should be a tool for confidence, not stress. Our mission is to support you in making smart, sustainable financial decisions, so you can move forward with clarity, confidence, and control every step of the way.</p>
